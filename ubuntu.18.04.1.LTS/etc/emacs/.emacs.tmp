@@ -1,0 +1,195 @@
+;;
+;; LASER5 Linux default .emacs
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; .emacs のサンプルファイル
+;;;
+;
+; これは、サンプルです。ご自由に変更してください。
+
+;;;
+;;; /usr/share/emacs/20.x/site-lisp/default.el の処理を行わない。
+;;;
+;
+;(setq default-emacs-process 'nil)
+;
+;;; LASER5 の default.elでは、coding-system,input-method等の設定を
+;;; 行っています。その処理を行いたくない場合は、上記の ; を外して
+;;; 下さい。
+
+;; XEmacsや GNU Emacs 20.x Emacs 19.xや muleとの共存。
+;(cond
+; ((featurep 'xemacs)
+;   (setq custom-file "~/.xemacs")
+;   (setq user-init-file "~/.xemacs")
+;   (load (expand-file-name "~/.xemacs") nil t nil)
+;   (message "XEmacs")   
+;  )
+; (t ;; Mule 2.3 or Emacs 19
+;   (load (expand-file-name "~/.emacs19") nil t nil)
+;   (message "Emacs19 or Mule2.3")
+;  )
+; )
+;; Emacs 20.x をお使いなら、"~/.emacs.el" に修正を加えた方が良いでしょう。
+
+;; 
+;(display-time)
+;(setq kill-whole-line t)
+;(setq next-line-add-newlines nil)
+;(line-number-mode 1)
+
+;;;
+;;; C-h と delete の入れ替え
+;;;
+;(load "term/keyswap") ;; C-h をdeleteにする。
+;(global-set-key "\M-h" 'help-for-help) ;; M-h を helpを呼ぶように
+;(global-set-key "\M-g" 'goto-line)     ;; M-g で goto-lineを呼ぶ
+
+;;;
+;;; Cperl の設定
+;;;
+;(setq cperl-mode-hook
+;  '(lambda nil
+;     (setq cperl-argdecl-indent 0)
+;     (setq cperl-continued-statement-offset 0)
+;     (setq cperl-indent-level 2)
+;     (setq cperl-label-offset -2)
+;     (setq cperl-tab-always-indent nil)
+;     (setq cperl-auto-newline nil)
+;    ))
+
+;(setq auto-mode-alist
+;  (append (list   (cons "\\.c\\'" 'c-mode)
+;                  (cons "\\.pl\\'" 'cperl-mode)
+;                  )
+;          auto-mode-alist))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; eWnn configuration
+;;;
+;;; From Akihiko Seino
+;;;
+;;; After eWnn Install delete a ';'
+;(setq load-path
+;	(append (list "/usr/local/share/emacs/site-lisp/ewnn")
+;		load-path))
+;(load "ewnn")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Mew の設定
+;;;
+
+;(autoload 'mew "mew" nil t)
+;(autoload 'mew-send "mew" nil t)
+;(setq mew-mail-domain-list '("hoge.co.jp"))
+;;(setq mew-icon-directory "icon directory")
+;(setq mew-demo nil)
+;(setq mew-auto-get nil)                  ;; 開始時に Mailを取りに行かない
+
+;; URLがあればマウス中ボタンクリックで Netcapeを開く
+;(autoload 'browse-url-at-mouse "browse-url"
+; "Ask a WWW browser to load a URL clicked with the mouse." t)
+; (add-hook 'mew-message-mode-hook
+; (function (lambda ()
+; (local-set-key [mouse-2] 'browse-url-at-mouse))))
+
+;;;
+;;; Citation tip
+;;;
+;;;
+;;; From: Kazu Yamamoto <Kazu@Mew.org>
+;;; Subject: Hello World
+;;; Date: Thu, 08 Dec 1994 11:44:08 +0900
+;;; Message-Id: <199509291309.WAA21663@decpc07.aist-nara.ac.jp>
+;;;
+;;; kazu> The quick brown fox jumped over the very lazy dog.
+;;;
+
+;(setq mew-cite-fields '("From:" "Subject:" "Date:" "Message-ID:"))
+;(setq mew-cite-format "From: %s\nSubject: %s\nDate: %s\nMessage-ID: %s\n\n")
+;(setq mew-cite-prefix-function 'mew-cite-prefix-username)
+
+;;;
+;;; ispell-message for Mew
+;;;
+;;;	You should apply ispell.el.patch to ispell.el.
+;;;
+
+;(add-hook 'mew-send-hook 'ispell-message)
+
+;;
+;; my mail stock
+;;
+;(setq mew-fcc "stock")
+;(setq mew-mail-address-list
+;      '("foo@mail-address"
+;        "bar@other-mail-address"))
+
+;;
+;; folder a list
+;;
+;(setq  mew-refile-guess-alist
+;       '(("Subject:" ("[error]"."+error"))
+;         ("To:"
+;           ("l5users@laser5.co.jp"."+l5users"))
+;         ("From:"    ("you@"."+you")
+;                     ("here@where"."+here"))
+;         ("Cc:"      ("all@"."+all"))
+;         ))
+;;;
+;;;  mew setup end
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Emacs/W3 の設定
+;;;
+;(condition-case () (require 'w3-auto "w3-auto") (error nil))
+;(add-hook 'w3-hook
+;  (function (lambda ()
+;(make-frame '((set-language-environment "Japanese")
+;       (set-terminal-coding-system 'japanese-iso-8bit)
+;       (set-buffer-file-coding-system 'japanese-iso-8bit)
+;       (top . 1)
+;       (left . 1)
+;       (user-position . t)
+;       (width . 80)
+;       (height . 30)))
+;  (other-frame 1))))
+;
+
+;;
+;; スタートファイル,ホームページの設定
+;;
+;(custom-set-variables
+; '(w3-documentation-root "file://localhost/home/user/.netscape/bookmarks.html"))
+;(custom-set-faces)
+;(setq w3-default-homepage "file://localhost/home/user/.netscape/bookmarks.html")
+
+;(setq browse-url-browser-function 'browse-url-w3)
+
+;(autoload 'browse-url-at-point "browse-url"
+; "Ask a WWW browser to load a URL clicked with the keyboard." t)
+; (add-hook 'mew-message-mode-hook
+; (function (lambda ()
+; (local-set-key "\C-c\C-j" 'browse-url-at-point))))
+
+;; mew 使用時に 
+;; Messageの URL上で [C-cC-j] をすると w3が立ち上がる。
+;;
+;(autoload 'browse-url-at-point "browse-url"
+; "Ask a WWW browser to load a URL clicked with the mouse." t)
+; (add-hook 'mew-message-mode-hook
+; (function (lambda ()
+; (local-set-key "\C-c\C-j" 'browse-url-at-point))))
+
+;;; w3 setup end
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; End
+

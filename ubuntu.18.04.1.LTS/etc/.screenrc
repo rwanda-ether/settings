@@ -1,0 +1,15 @@
+escape ^Tt
+escape ^Ta
+escape ^Rr
+termcap kterm hs@
+terminfo kterm hs@
+vbell off
+bind w windowlist -b
+hardstatus alwayslastline I%wI
+defhstatus I^En:^EtI
+shell -$SHELL
+startup_message off
+autodetach on
+
+
+

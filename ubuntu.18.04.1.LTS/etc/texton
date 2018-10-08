@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo grep -l 'quiet splash' /etc/default/grub | sudo xargs sed -i.bak -e 's/quiet splash/quiet text/g'
+sudo update-grub
+sudo systemctl set-default multi-user.target
+sudo reboot
+

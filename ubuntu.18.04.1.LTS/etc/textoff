@@ -1,0 +1,7 @@
+#!/bin/bash
+#Time-stamp: <2017-06-06 15:14:36 hamada>
+
+sudo grep -l 'quiet text' /etc/default/grub | sudo xargs sed -i.bak -e 's/quiet text/quiet splash/g'
+sudo update-grub
+sudo systemctl set-default graphical.target
+sudo reboot

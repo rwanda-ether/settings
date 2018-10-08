@@ -1,0 +1,200 @@
+# Time-stamp: "2009-05-01 22:26:17 hamada"
+
+NoGrabServer
+OpaqueMove
+RestartPreviousState
+DecorateTransients
+RandomPlacement
+
+VirtualDesktop 1600x1200
+Sticky{"xclock" "xload"}
+
+#
+#AutoRelativeSize
+NoRaiseOnMove
+NoRaiseOnResize
+NoRaiseOnDeiconify
+#
+NoTitle
+{
+"TWM Icon Manager"
+	"Mozilla Firefox"
+	"Welcome to CentOS - Mozilla Firefox"
+	"rdesktop"
+	"gnome-terminal"
+	"gnome-pty-helper"
+	"xeyes"
+	"xclock"
+	"xosview"
+	"oclock"
+	"xbiff"
+	"xload"
+	"xearth"
+	"login"
+	"xdaliclock"
+	"asclock"
+	"wm_asclock"
+	"kmp3"
+	"kterm"
+	"xterm"
+	"xiterm"
+        "emacs"
+        "xemacs"
+	"mule"
+	"xdvi"
+	"rxvt"
+	"gv"
+	"Gnuplot"
+	"Ghostview"
+}
+IconManagerGeometry "120x10-10+35" 1
+ShowIconManager
+IconManagerDontShow
+{
+	"xclock"
+	"login"
+	"xbiff"
+	"xload"
+}
+# IconRegion "1024x64+0-0" East South 64 70
+IconifyByUnmapping
+# RightTitleButton "" = f.nop
+
+Color
+{
+    BorderColor "#00eff0"
+
+    DefaultBackground "gray80"
+    DefaultForeground "black"
+
+    TitleBackground "#000034"
+    TitleForeground "#00e7ff"
+#    TitleForeground "#0000a5"
+
+    MenuBackground "#00e0e0"
+    MenuForeground "black"
+    MenuTitleBackground "#00005e"
+    MenuTitleForeground "white"
+
+    IconBackground "#000055"
+    IconForeground "black"
+    IconBorderColor "white"
+
+    IconManagerBackground "wheat"
+    IconManagerForeground "#0055ee"
+}
+
+#
+# Define some useful functions for motion-based actions.
+#
+MoveDelta 3
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+#
+# Set some useful bindings.  Sort of uwm-ish, sort of simple-button-ish
+#
+
+Button1 = : root : f.menu "defops"
+Button3 = : root : f.menu "defops"
+
+Button1 = : title : f.function "move-or-raise"
+Button2 = : title : f.resize
+Button3 = : title : f.menu "winops"
+
+Button1 = c|s : window|icon : f.function "move-or-raise"
+Button2 = c|s : window|icon : f.resize
+Button3 = c|s : window|icon : f.function "move-or-lower"
+
+Button1 = m : window : f.zoom
+Button2 = m : window : f.hzoom
+Button3 = m : window : f.fullzoom
+
+Button1 = c|m : window : f.refresh
+Button2 = c|m : window : f.winrefresh
+Button3 = c|m : window : f.delete
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.raise
+Button3 = : iconmgr : f.lower
+
+ "L5" = : all : f.raiselower
+ "L7" = : all : f.iconify
+# "F7" = : all : f.zoom
+ "F8" = : all : f.hzoom
+ "F9" = : all : f.fullzoom
+
+#
+# And a menu with the usual things:
+#
+
+menu "defops"
+{
+"Hamada Menu1"		f.title
+"Kill"		f.destroy
+"kterm"		!"kterm -fg wheat -bg black -sl 10000&"
+"kterm(R)"		!"kterm -fg \"#000074\" -bg \"#939393\" -geometry +0 -sl 2000 &"
+"kterm(B)"		!"kterm -fg white -bg \"#000074\" -geometry +0 -sl 2000 &"
+"xterm"		!"xterm -fg wheat -bg black -sl 10000&"
+"mule" !"emacs &"
+#"bourgogne"	!"xon bourgogne kterm -display `hostname`:0 -n bourgogne &"
+#"kyohou"	!"xon kyohou kterm"
+""		f.nop
+"Resize"	f.resize
+"Move"		f.move
+"Raise"		f.raise
+""		f.nop
+"Refresh"	f.refresh
+""		f.nop
+"Show Iconmgr"	f.showiconmgr
+"Hide Iconmgr"	f.hideiconmgr
+""		f.nop
+"Delete"	f.delete
+"Exit Twm" !"perl /usr6/hamada/bin/killwm.pl &"
+""		f.nop
+"Restart"	f.restart
+"Exit"		f.quit
+}
+
+#
+# Window control menu:
+#
+menu "winops"
+{
+"Window"	f.title
+"Iconify"	f.iconify
+"Resize"	f.resize
+"Move"		f.move
+"Raise"		f.raise
+"Lower"		f.lower
+"Zoom"		f.zoom
+"Refresh"	f.winrefresh
+"Kill"		f.delete
+}
+
+WindowRing
+{
+   "kterm"
+   "xterm"
+   "mule"
+   "emacs"
+   "xemacs"
+   "MAX+plus"
+   "Netscape"
+   "Ghostview"
+   "tektronix"
+   "Tgif"
+   "xbiff"
+   "xdvi"
+   "DICTION"
+   "MAIL"
+   "Acrobat Reader"
+   "rxvt"
+}
+"F1" = : all : f.warpring "prev"
+"F2" = : all : f.warpring "next"
+"F3" = : all : f.raiselower
