@@ -1,16 +1,22 @@
-#Time-stamp: <2018-10-08 13:01:12 hamada>
+#Time-stamp: <Mon Oct 08 17:20:13 JST 2018 hamada>
 
 # OS: Ubuntu 18.04.1 LTS
 
 all:
 	@echo 'make environ web3py'
 
-install: environ web3py
+install: environ web3py geth
 
 web3py:
 	sudo apt update
 	sudo apt -y install python3-pip
 	pip3 install web3
+
+geth:
+	sudo apt-get install software-properties-common
+	sudo add-apt-repository -y ppa:ethereum/ethereum
+	sudo apt-get update
+	sudo apt-get install ethereum
 
 #--- NVIDIA CUDA ---
 nvidia:
