@@ -129,3 +129,6 @@ export PATH="$HOME/anaconda3/bin:$PATH"
 
 # CUDA
 export PATH=$PATH:/usr/local/cuda/bin
+
+# General
+export PATH=$PATH:~/bin
