@@ -1,4 +1,4 @@
-#Time-stamp: <Mon Oct 08 17:20:13 JST 2018 hamada>
+#Time-stamp: <Sun Oct 21 12:12:45 JST 2018 hamada>
 
 # OS: Ubuntu 18.04.1 LTS
 
@@ -51,11 +51,13 @@ environ:
 	rsync -av ./etc/.twmrc  ~/
 	rsync -av ./etc/.screenrc  ~/
 	rsync -av ./etc/bash.bashrc.home ~/.bashrc
+	mkdir -p ~/bin; rsync -av ./etc/start-geth.py ~/bin/
 	sudo apt update
 	sudo apt -y install emacs-nox  ibus-mozc
 	sudo apt -y install openssh-server sshfs
 	sudo apt -y install nkf kterm screen git tree
 	sudo apt -y install mplayer ffmpeg 
+	sudo apt -y install build-essential golang
 	sudo update-alternatives --set editor /usr/bin/emacs25
 	sudo rsync -av ./etc/keyboard /etc/default/
 	sudo rsync -av ./etc/bash.bashrc /etc/bash.bashrc
