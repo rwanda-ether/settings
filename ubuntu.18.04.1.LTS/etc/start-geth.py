@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-#Time-stamp: <Sun Oct 21 12:10:59 JST 2018 hamada>
+#Time-stamp: <Sun Oct 21 12:20:05 JST 2018 hamada>
 
 # --port value           Network listening port (default: 30303)
-PORT = 30303
 PORT = 30304
+PORT = 30303
 # --rpcport value        HTTP-RPC server listening port (default: 8545)
-RPCPORT=18545
 RPCPORT=28545
+RPCPORT=18545
 
 '''
 admin.addPeer("enode://06c3e0ea8c53727d558465abd6f4a01c441514cd71f570266eea6560c692d456d51993d4e96ace06363492ffdd19116ab8087bb85ce95275e623b9930a7e6eab@35.196.168.136:39882")
