@@ -86,8 +86,6 @@ alias cleandemofiles='rm -rf *.c *.vhd ISE_PROJECT *~ .*~ *.h'
 alias ssh-set='eval `ssh-agent`; ssh-add'
 alias suu='sudo su '
 alias ss='ssh -C -X -l `whoami`'
-alias ssj='ssh -C -X -l xu30 xd1gate.cray.co.jp'
-alias ssc='ssh -C -X -l hhd096 xd1'
 alias langj='export LANG=ja_JP.eucJP'
 alias langc='export LANG=C'
 alias cd='pushd ./ 1>/dev/null 2>/dev/null;echo $PWD;cd $ARG'
@@ -117,6 +115,8 @@ alias mroe='more'
 alias mre='more'
 alias meor='more'
 alias sl='ls'
+
+alias g='geth attach ~/.ethereum/testnet/geth.ipc'
 
 umask 022
 export LANG=C
