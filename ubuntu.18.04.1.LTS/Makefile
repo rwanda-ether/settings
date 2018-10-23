@@ -1,4 +1,4 @@
-#Time-stamp: <Sun Oct 21 12:12:45 JST 2018 hamada>
+#Time-stamp: <Tue Oct 23 12:27:50 JST 2018 hamada>
 
 # OS: Ubuntu 18.04.1 LTS
 
@@ -22,16 +22,16 @@ geth:
 nvidia:
 
 blacklist:
-	echo ""                           > test.txt
-	echo "blacklist nouveau"          >> test.txt
-	echo "blacklist lbm-nouveau"      >> test.txt
-	echo "options nouveau modeset=0"  >> test.txt
-	echo "alias nouveau off"          >> test.txt
-	echo "alias lbm-nouveau off"      >> test.txt
-	sudo mv test.txt /etc/modprobe.d/blacklist-nouveau.conf
-	echo ""                           > test2.txt
-	echo "options nouveau modeset=0"  >> test2.txt
-	sudo mv test2.txt /etc/modprobe.d/nouveau-kms.conf
+	echo ""                           > blacklist-nouveau.conf
+	echo "blacklist nouveau"          >> blacklist-nouveau.conf
+	echo "blacklist lbm-nouveau"      >> blacklist-nouveau.conf
+	echo "options nouveau modeset=0"  >> blacklist-nouveau.conf
+	echo "alias nouveau off"          >> blacklist-nouveau.conf
+	echo "alias lbm-nouveau off"      >> blacklist-nouveau.conf
+	sudo mv blacklist-nouveau.conf /etc/modprobe.d/blacklist-nouveau.conf
+	echo ""                           > nouveau-kms.conf
+	echo "options nouveau modeset=0"  >> nouveau-kms.conf
+	sudo mv nouveau-kms.conf /etc/modprobe.d/nouveau-kms.conf
 	sudo update-initramfs -u
 
 texton:
