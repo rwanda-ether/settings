@@ -82,7 +82,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 #alias l='ls -CF'
 
-alias rwandaether='git config user.name "rwanda-ether"; git config user.email "rwanda-ether@user.noreplay.github.com"'
+alias rwanda-ether='git config user.name "rwanda-ether"; git config user.email "rwanda-ether@user.noreplay.github.com"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
